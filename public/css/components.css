@@ -1,0 +1,316 @@
+/* =========================
+   BOTONES
+   ========================= */
+
+.btn {
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.btn-primary {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--primary-soft);
+  border-color: var(--primary-soft);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-outline-primary {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-outline-primary:hover {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* =========================
+   UTILIDADES
+   ========================= */
+
+.highlight {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-yellow-soft);
+  color: var(--accent-yellow-strong);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+}
+
+.icon-accent {
+  color: var(--accent-yellow);
+}
+
+.text-muted-custom {
+  color: var(--muted);
+}
+
+/* =========================
+   MARCA VISUAL
+   ========================= */
+
+.brand-mark {
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, var(--primary-soft), var(--primary));
+  flex: 0 0 18px;
+}
+
+/* =========================
+   AVATARES
+   ========================= */
+
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--primary-light);
+  color: var(--primary-strong);
+  border: 1px solid rgba(15, 47, 107, 0.12);
+}
+
+.avatar-xs {
+  width: 26px;
+  height: 26px;
+  font-size: 0.85rem;
+}
+
+.avatar-sm {
+  width: 32px;
+  height: 32px;
+  font-size: 0.9rem;
+}
+
+.avatar-md {
+  width: 36px;
+  height: 36px;
+  font-size: 1rem;
+}
+
+/* =========================
+   TAGS
+   ========================= */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  padding: 0.22rem 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.tag-high {
+  background: rgba(239, 68, 68, 0.12);
+  color: #dc2626;
+}
+
+.tag-med {
+  background: rgba(245, 158, 11, 0.14);
+  color: #b45309;
+}
+
+.tag-low {
+  background: rgba(34, 197, 94, 0.14);
+  color: #15803d;
+}
+
+/* =========================
+   TARJETAS / PANELES
+   ========================= */
+
+.card-soft {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.card-soft-lg {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.panel-soft {
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(15, 47, 107, 0.06);
+}
+
+.cta-panel {
+  background: linear-gradient(180deg, #ffffff, #f7faff);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  box-shadow: var(--shadow-md);
+}
+
+/* =========================
+   TARJETAS DE CONTENIDO
+   ========================= */
+
+.feature-card,
+.audience-card,
+.cta-box {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 2rem;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+}
+
+.feature-card,
+.audience-card {
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.feature-card:hover,
+.audience-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(15, 47, 107, 0.18);
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.08);
+}
+
+.feature-card h3,
+.audience-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 1rem 0 0.75rem;
+}
+
+/* =========================
+   ICONOS / CHIPS
+   ========================= */
+
+.icon-chip,
+.icon-wrap {
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--primary);
+  font-size: 1.35rem;
+}
+
+.icon-chip-accent,
+.icon-wrap.soft-yellow {
+  background: rgba(242, 183, 5, 0.14);
+  color: #9a6d00;
+}
+
+/* =========================
+   TITULOS DE SECCIÓN
+   ========================= */
+
+.section-heading {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-heading h2 {
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  display: inline-block;
+  position: relative;
+}
+
+.section-heading h2::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin: 12px auto 0;
+  border-radius: 999px;
+  background: var(--accent-yellow);
+}
+
+.section-heading p {
+  max-width: 620px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 1.02rem;
+}
+
+/* =========================
+   BOTONES DE ICONO / BADGES
+   ========================= */
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid rgba(15, 47, 107, 0.12);
+  background: var(--surface);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 10px 20px rgba(15, 47, 107, 0.06);
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.icon-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.icon-btn i {
+  font-size: 1.25rem;
+  color: var(--ink);
+}
+
+.count-badge {
+  background: var(--surface);
+  border: 1px solid rgba(15, 47, 107, 0.12);
+  border-radius: var(--radius-pill);
+  padding: 2px 10px;
+  font-weight: 900;
+  color: var(--ink);
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 767.98px) {
+  .feature-card,
+  .audience-card,
+  .cta-box {
+    padding: 1.5rem;
+  }
+
+  .section-heading h2 {
+    font-size: 1.8rem;
+  }
+}

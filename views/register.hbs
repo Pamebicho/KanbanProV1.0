@@ -1,60 +1,59 @@
 <div class="auth-outer">
   <div class="auth-frame">
-    <!-- IZQUIERDA -->
-    <section class="auth-left">
-      <div class="auth-brand">
-        <span class="brand-mark"></span>
-        <span class="brand-name">KanbanPro</span>
-      </div>
 
-      <div class="mt-4">
-        <p class="auth-kicker mb-2">Comienza tu experiencia</p>
-        <h1 class="auth-title mb-4">Crear cuenta en KanbanPro</h1>
+    <!-- IZQUIERDA — formulario -->
+    <section class="auth-left">
+      <a class="auth-brand" href="/">
+        <i class="bi bi-rocket-takeoff-fill"></i>
+        <span>KanbanPro</span>
+      </a>
+
+      <div class="auth-form-wrap">
+        <p class="auth-kicker">Comienza tu experiencia</p>
+        <h1 class="auth-title">Crear cuenta</h1>
 
         <form>
           <div class="mb-3">
-            <label class="form-label auth-label">Correo electrónico</label>
-            <div class="auth-input">
-              <input
-                class="form-control auth-control"
-                type="email"
-                placeholder="ejemplo@email.com"
-              />
-
-              <i class="bi bi-envelope auth-icon"></i>
+            <label class="auth-label">Nombre completo</label>
+            <div class="auth-input-wrap">
+              <i class="bi bi-person auth-input-icon"></i>
+              <input class="auth-control" type="text" placeholder="Tu nombre" />
             </div>
           </div>
 
           <div class="mb-3">
-            <label class="form-label auth-label">Contraseña</label>
-            <div class="auth-input">
+            <label class="auth-label">Correo electrónico</label>
+            <div class="auth-input-wrap">
+              <i class="bi bi-envelope auth-input-icon"></i>
               <input
-                class="form-control auth-control"
-                type="password"
-                placeholder="••••••••"
+                class="auth-control"
+                type="email"
+                placeholder="ejemplo@email.com"
               />
-              <i class="bi bi-eye auth-icon"></i>
             </div>
           </div>
 
-          <!-- Simulación -->
-          <a class="btn auth-btn w-100" href="/dashboard">Registrarse</a>
+          <div class="mb-4">
+            <label class="auth-label">Contraseña</label>
+            <div class="auth-input-wrap">
+              <i class="bi bi-lock auth-input-icon"></i>
+              <input
+                class="auth-control"
+                type="password"
+                placeholder="Mínimo 8 caracteres"
+              />
+            </div>
+          </div>
 
-          <div class="auth-divider my-4">
-            <span>Registrarse con</span>
+          <a class="auth-btn" href="/dashboard">Crear cuenta gratis</a>
+
+          <div class="auth-divider">
+            <span>o registrarse con</span>
           </div>
 
           <div class="auth-social">
             <button
-              class="btn auth-social-btn"
-              type="button"
-              disabled
-              aria-label="Facebook"
-            >
-              <i class="bi bi-facebook"></i>
-            </button>
-            <button
-              class="btn auth-social-btn"
+              class="auth-social-btn"
               type="button"
               disabled
               aria-label="Google"
@@ -62,7 +61,15 @@
               <i class="bi bi-google"></i>
             </button>
             <button
-              class="btn auth-social-btn"
+              class="auth-social-btn"
+              type="button"
+              disabled
+              aria-label="GitHub"
+            >
+              <i class="bi bi-github"></i>
+            </button>
+            <button
+              class="auth-social-btn"
               type="button"
               disabled
               aria-label="Apple"
@@ -71,15 +78,65 @@
             </button>
           </div>
 
-          <p class="auth-foot mt-4 mb-0">
-            ¿Ya tienes una cuenta?
+          <p class="auth-foot">
+            ¿Ya tienes cuenta?
             <a class="auth-link" href="/login">Iniciar sesión</a>
           </p>
         </form>
       </div>
     </section>
 
-    <!-- DERECHA -->
-    <aside class="auth-right" aria-hidden="true"></aside>
+    <!-- DERECHA — panel de marca -->
+    <aside class="auth-right" aria-hidden="true">
+      <div class="auth-right-inner">
+
+        <div class="auth-right-logo">
+          <i class="bi bi-rocket-takeoff-fill"></i>
+        </div>
+
+        <h2 class="auth-right-title">
+          Tu primer sprint<br />empieza hoy.
+        </h2>
+
+        <p class="auth-right-desc">
+          Crea tu cuenta en segundos y accede a un tablero Kanban listo para
+          organizar tu trabajo desde el primer día.
+        </p>
+
+        <div class="auth-features">
+          <div class="auth-feature">
+            <div class="auth-feature-icon">
+              <i class="bi bi-lightning-charge-fill"></i>
+            </div>
+            <div>
+              <p class="auth-feature-title">Listo en minutos</p>
+              <p class="auth-feature-desc">Sin configuración, sin complicaciones</p>
+            </div>
+          </div>
+
+          <div class="auth-feature">
+            <div class="auth-feature-icon">
+              <i class="bi bi-people-fill"></i>
+            </div>
+            <div>
+              <p class="auth-feature-title">Para equipos y solos</p>
+              <p class="auth-feature-desc">Freelancers, estudiantes y equipos</p>
+            </div>
+          </div>
+
+          <div class="auth-feature">
+            <div class="auth-feature-icon">
+              <i class="bi bi-shield-check"></i>
+            </div>
+            <div>
+              <p class="auth-feature-title">Gratis para empezar</p>
+              <p class="auth-feature-desc">Sin tarjeta de crédito requerida</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
   </div>
 </div>

@@ -1,280 +1,351 @@
 <!-- HERO -->
-<section class="section-wave py-4">
-  <div class="row g-5 align-items-center mb-5">
-    <div class="col-lg-6">
-      <p class="text-secondary mb-2">Gestión clara y estructurada</p>
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
 
-      <h1 class="display-6 fw-bold mb-3">
-        Organiza tu trabajo con un sistema Kanban profesional
-      </h1>
+      <!-- Texto -->
+      <div class="hero-text">
+        <p class="hero-eyebrow">
+          <i class="bi bi-grid-1x2-fill"></i>
+          Gestión visual de proyectos
+        </p>
 
-      <p class="text-muted mb-4">
-        Visualiza tareas, controla el flujo y mejora la productividad. KanbanPro
-        simplifica la gestión sin complicaciones.
-      </p>
+        <h1 class="hero-title">
+          Tu trabajo,
+          <span class="hero-accent">organizado</span><br />
+          de verdad.
+        </h1>
 
-      <div class="d-flex flex-wrap gap-3">
-        <a class="btn btn-primary px-4" href="/login">
-          <i class="bi bi-play-fill me-1"></i>
-          Probar demo
-        </a>
+        <p class="hero-desc">
+          KanbanPro te ayuda a visualizar tareas, mover tarjetas entre columnas
+          y dar seguimiento a cada sprint - sin complicaciones.
+        </p>
 
-        <a class="btn btn-outline-primary px-4" href="/register">
-          <i class="bi bi-person-plus me-1"></i>
-          Crear cuenta
-        </a>
+        <div class="hero-actions">
+          <a class="btn-hero-primary" href="/register">
+            Crear cuenta gratis
+            <i class="bi bi-arrow-right"></i>
+          </a>
+          <a class="btn-hero-ghost" href="/login">
+            Ver demo
+          </a>
+        </div>
+
+        <div class="hero-badges">
+          <span class="hero-badge">
+            <i class="bi bi-check-circle-fill"></i>
+            Sin tarjeta de crédito
+          </span>
+          <span class="hero-badge">
+            <i class="bi bi-check-circle-fill"></i>
+            Gratis para empezar
+          </span>
+          <span class="hero-badge">
+            <i class="bi bi-check-circle-fill"></i>
+            Arrastrar y soltar incluido
+          </span>
+        </div>
       </div>
 
-      <div class="d-flex flex-wrap gap-3 mt-4 text-muted small">
-        <div class="d-flex align-items-center gap-2">
-          <i class="bi bi-shield-check"></i>
-          Orden y consistencia
+      <!-- Mockup tablero -->
+      <div class="hero-visual">
+        <div class="mock-window">
+          <div class="mock-titlebar">
+            <div class="mock-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <span class="mock-url">KanbanPro</span>
+          </div>
+
+          <div class="mock-topbar">
+            <div>
+              <p class="mock-eyebrow">Tablero principal</p>
+              <h5 class="mock-board-title">Nuevo Proyecto</h5>
+            </div>
+            <button class="mock-new-btn" type="button">
+              <i class="bi bi-plus-lg"></i>
+              Nueva tarea
+            </button>
+          </div>
+
+          <div class="mock-board">
+            <!-- Columna 1 -->
+            <div class="mock-col">
+              <div class="mock-col-head">
+                <span class="col-dot col-todo"></span>
+                <span>Por hacer</span>
+                <span class="col-badge">2</span>
+              </div>
+              <div class="mock-card">
+                <span class="card-id">DC-101</span>
+                <p class="card-title">Diseño UI</p>
+                <p class="card-desc">Definir layout y estilos base</p>
+                <div class="card-foot">
+                  <span class="tag tag-high">Alta</span>
+                  <span class="card-date">15 mar</span>
+                </div>
+              </div>
+              <div class="mock-card card-soft-mock">
+                <span class="card-id">DC-102</span>
+                <p class="card-title">Backlog</p>
+                <p class="card-desc">Ajustar contenido del home</p>
+                <div class="card-foot">
+                  <span class="tag tag-med">Media</span>
+                  <span class="card-date">20 mar</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Columna 2 -->
+            <div class="mock-col">
+              <div class="mock-col-head">
+                <span class="col-dot col-doing"></span>
+                <span>En progreso</span>
+                <span class="col-badge">1</span>
+              </div>
+              <div class="mock-card card-active-mock">
+                <span class="card-id card-id-blue">DC-100</span>
+                <p class="card-title">Dashboard</p>
+                <p class="card-desc">Render dinámico + formulario</p>
+                <div class="card-foot">
+                  <span class="tag tag-med">Media</span>
+                  <span class="card-progress">En curso</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Columna 3 -->
+            <div class="mock-col">
+              <div class="mock-col-head">
+                <span class="col-dot col-done"></span>
+                <span>Hecho</span>
+                <span class="col-badge">1</span>
+              </div>
+              <div class="mock-card card-done-mock">
+                <span class="card-id">DC-99</span>
+                <p class="card-title">Setup inicial</p>
+                <p class="card-desc">Proyecto Node.js listo</p>
+                <div class="card-foot">
+                  <span class="done-pill">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Completado
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="d-flex align-items-center gap-2">
-          <i class="bi bi-lightning-charge"></i>
-          Simple y rápido
+
+        <!-- Chips flotantes -->
+        <div class="hero-float hero-float-1">
+          <i class="bi bi-arrow-left-right"></i>
+          Arrastrar y soltar
         </div>
-        <div class="d-flex align-items-center gap-2">
-          <i class="bi bi-save2"></i>
-          Persistencia local (Sprint 1)
+        <div class="hero-float hero-float-2">
+          <i class="bi bi-lightning-charge-fill"></i>
+          Tiempo real
         </div>
       </div>
+
     </div>
+  </div>
+</section>
 
-    <div class="col-lg-6">
-      <!-- Mockup más real -->
-      <div
-        class="home-mock border rounded-4 shadow-sm overflow-hidden bg-white"
-      >
-        <div
-          class="home-mock-top d-flex align-items-center justify-content-between px-3 py-2 border-bottom"
-        >
-          <div class="d-flex align-items-center gap-2">
-            <span class="dot"></span><span class="dot"></span><span
-              class="dot"
-            ></span>
-            <span class="ms-2 text-muted small">Proyecto · Sprint 1</span>
-          </div>
-          <span class="badge text-bg-light border">Kanban</span>
-        </div>
-
-        <div class="p-3">
-          <div class="row g-3">
-            <div class="col-4">
-              <div class="kan-col">
-                <div
-                  class="kan-col-title d-flex justify-content-between align-items-center"
-                >
-                  <span>Por hacer</span>
-                  <span class="badge text-bg-light border">2</span>
-                </div>
-
-                <div class="kan-card">
-                  <div class="d-flex justify-content-between">
-                    <strong class="me-2">Diseño UI</strong>
-                    <span class="tag tag-high">Alta</span>
-                  </div>
-                  <div class="text-muted small mt-1">Definir layout y estilos</div>
-                </div>
-
-                <div class="kan-card">
-                  <div class="d-flex justify-content-between">
-                    <strong class="me-2">Backlog</strong>
-                    <span class="tag tag-med">Media</span>
-                  </div>
-                  <div class="text-muted small mt-1">Ajustar contenido home</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-4">
-              <div class="kan-col">
-                <div
-                  class="kan-col-title d-flex justify-content-between align-items-center"
-                >
-                  <span>En progreso</span>
-                  <span class="badge text-bg-light border">1</span>
-                </div>
-
-                <div class="kan-card">
-                  <div class="d-flex justify-content-between">
-                    <strong class="me-2">Dashboard</strong>
-                    <span class="tag tag-med">Media</span>
-                  </div>
-                  <div class="text-muted small mt-1">Render dinámico + form</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-4">
-              <div class="kan-col">
-                <div
-                  class="kan-col-title d-flex justify-content-between align-items-center"
-                >
-                  <span>Finalizado</span>
-                  <span class="badge text-bg-light border">1</span>
-                </div>
-
-                <div class="kan-card">
-                  <div class="d-flex justify-content-between">
-                    <strong class="me-2">Setup</strong>
-                    <span class="tag tag-low">Baja</span>
-                  </div>
-                  <div class="text-muted small mt-1">Proyecto listo</div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
+<!-- STATS -->
+<section class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <span class="stat-number">4</span>
+        <span class="stat-label">Columnas Kanban</span>
       </div>
-
-      <p class="text-muted small mt-2 mb-0">
-        *Vista previa ilustrativa (Sprint 1).
-      </p>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number">∞</span>
+        <span class="stat-label">Tareas por tablero</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number">100%</span>
+        <span class="stat-label">Persistencia en BD</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number">0</span>
+        <span class="stat-label">Config necesaria</span>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- BENEFICIOS -->
-<section class="section-wave alt px-4 py-4">
-  <div class="mb-5">
-    <div class="text-center mb-4">
-      <h2 class="fw-bold">Beneficios principales</h2>
-      <p class="text-muted mb-0">Lo esencial para trabajar con foco.</p>
+<section class="section-benefits">
+  <div class="container">
+    <div class="section-header">
+      <h2>Funciones que importan</h2>
+      <p class="section-sub">Sin exceso. Solo lo que necesitas para trabajar
+        bien.</p>
     </div>
 
-    <div class="row g-3">
-      <div class="col-md-4">
-        <div class="p-4 border rounded-4 bg-white h-100 shadow-sm">
-          <i class="bi bi-eye fs-3 text-primary"></i>
-          <h3 class="h5 mt-3">Visibilidad total</h3>
-          <p class="text-muted mb-0">Todo el trabajo a la vista, sin perder
-            contexto.</p>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <i class="bi bi-eye"></i>
         </div>
+        <h3>Visibilidad total</h3>
+        <p>Todo el trabajo pendiente, en curso y completado en un solo tablero.
+          Sin hojas de cálculo perdidas.</p>
       </div>
 
-      <div class="col-md-4">
-        <div class="p-4 border rounded-4 bg-white h-100 shadow-sm">
-          <i class="bi bi-funnel fs-3 text-primary"></i>
-          <h3 class="h5 mt-3">Prioridad clara</h3>
-          <p class="text-muted mb-0">Menos tareas a la vez, más avance real.</p>
+      <div class="benefit-card">
+        <div class="benefit-icon benefit-icon-yellow">
+          <i class="bi bi-funnel-fill"></i>
         </div>
+        <h3>Prioridades claras</h3>
+        <p>Etiqueta cada tarea como Alta, Media o Baja. Siempre sabrás qué
+          atacar primero.</p>
       </div>
 
-      <div class="col-md-4">
-        <div class="p-4 border rounded-4 bg-white h-100 shadow-sm">
-          <i class="bi bi-shield-check fs-3 text-primary"></i>
-          <h3 class="h5 mt-3">Orden y consistencia</h3>
-          <p class="text-muted mb-0">Flujo simple, formal y fácil de mantener.</p>
+      <div class="benefit-card">
+        <div class="benefit-icon benefit-icon-green">
+          <i class="bi bi-arrow-left-right"></i>
         </div>
+        <h3>Flujo natural</h3>
+        <p>Mueve tarjetas con drag & drop. El sistema actualiza el estado
+          automáticamente.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon benefit-icon-purple">
+          <i class="bi bi-database-check"></i>
+        </div>
+        <h3>Datos persistentes</h3>
+        <p>Todo queda guardado. Recarga la página cuando quieras — tu tablero
+          siempre estará igual.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <i class="bi bi-person-check"></i>
+        </div>
+        <h3>Asignación directa</h3>
+        <p>Asigna cada tarea a un responsable. Nadie puede decir que no sabía.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon benefit-icon-yellow">
+          <i class="bi bi-calendar3-event"></i>
+        </div>
+        <h3>Fechas de entrega</h3>
+        <p>Cada tarjeta tiene fecha límite. El equipo sabe cuándo hay que
+          terminar.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CÓMO FUNCIONA -->
-<section class="section-wave px-4 py-4">
-  <div class="mb-5">
-    <div class="text-center mb-4">
-      <h2 class="fw-bold">Cómo funciona</h2>
-      <p class="text-muted">Tres pasos para ordenar tu ejecución.</p>
+<section class="section-how">
+  <div class="container">
+    <div class="section-header">
+      <h2>Tres pasos, sin vueltas</h2>
+      <p class="section-sub">Diseñado para empezar en minutos, no horas.</p>
     </div>
 
-    <div class="row g-4 justify-content-center text-center">
-  <div class="col-md-4">
-    <div class="p-4 border rounded-4 bg-white shadow-sm h-100">
-      <div class="fs-2 text-primary mb-3">
-        <i class="bi bi-list-task"></i>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num step-num-yellow">01</div>
+        <div class="step-icon">
+          <i class="bi bi-list-task"></i>
+        </div>
+        <h3>Define el trabajo</h3>
+        <p>Crea tareas con título, descripción, prioridad y fecha de entrega
+          desde el dashboard.</p>
       </div>
-      <h3 class="h5 fw-bold">1. Define el trabajo</h3>
-      <p class="text-muted mb-0">
-        Registra tareas claras y concretas antes de comenzar.
-      </p>
-    </div>
-  </div>
 
-  <div class="col-md-4">
-    <div class="p-4 border rounded-4 bg-white shadow-sm h-100">
-      <div class="fs-2 text-primary mb-3">
-        <i class="bi bi-kanban"></i>
+      <div class="step-arrow">
+        <i class="bi bi-arrow-right"></i>
       </div>
-      <h3 class="h5 fw-bold">2. Controla el flujo</h3>
-      <p class="text-muted mb-0">
-        Visualiza el avance y evita la sobrecarga.
-      </p>
-    </div>
-  </div>
 
-  <div class="col-md-4">
-    <div class="p-4 border rounded-4 bg-white shadow-sm h-100">
-      <div class="fs-2 text-primary mb-3">
-        <i class="bi bi-check2-square"></i>
+      <div class="step-card">
+        <div class="step-num step-num-blue">02</div>
+        <div class="step-icon step-icon-blue">
+          <i class="bi bi-kanban"></i>
+        </div>
+        <h3>Controla el flujo</h3>
+        <p>Arrastra las tarjetas entre columnas a medida que avanza el trabajo
+          del sprint.</p>
       </div>
-      <h3 class="h5 fw-bold">3. Entrega con disciplina</h3>
-      <p class="text-muted mb-0">
-        Finaliza tareas y mantén un ritmo constante.
-      </p>
+
+      <div class="step-arrow">
+        <i class="bi bi-arrow-right"></i>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num step-num-green">03</div>
+        <div class="step-icon step-icon-green">
+          <i class="bi bi-check2-square"></i>
+        </div>
+        <h3>Entrega con orden</h3>
+        <p>Cierra tareas completadas y mantén el historial limpio para el
+          próximo sprint.</p>
+      </div>
     </div>
+
+    <p class="steps-closing">Menos improvisación. Más ejecución.</p>
   </div>
-  <p class="text-center fw-semibold mt-4">
-  Menos improvisación. Más ejecución.
-</p>
-</div>
 </section>
 
 <!-- PARA QUIÉN ES -->
-<section class="section-wave alt px-4 py-4">
-  <div class="mb-5">
-    <div class="text-center mb-4">
-      <h2 class="fw-bold">¿Para quién es?</h2>
-      <p class="text-muted mb-0">Casos reales, sin promesas vacías.</p>
+<section class="section-audience">
+  <div class="container">
+    <div class="section-header">
+      <h2>¿Para quién es?</h2>
+      <p class="section-sub">Adaptable a distintas formas de trabajar.</p>
     </div>
 
-    <div class="row g-3">
-      <div class="col-md-4">
-        <div class="p-4 border rounded-4 bg-white h-100 shadow-sm">
-          <i class="bi bi-people fs-3 text-primary"></i>
-          <h3 class="h5 mt-3">Equipos pequeños</h3>
-          <p class="text-muted mb-0">Coordina tareas sin burocracia.</p>
-        </div>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <i class="bi bi-people-fill audience-icon"></i>
+        <h3>Equipos pequeños</h3>
+        <p>Coordina tareas entre pocos sin reuniones innecesarias ni
+          herramientas complejas.</p>
       </div>
-
-      <div class="col-md-4">
-        <div class="p-4 border rounded-4 bg-white h-100 shadow-sm">
-          <i class="bi bi-mortarboard fs-3 text-primary"></i>
-          <h3 class="h5 mt-3">Estudiantes</h3>
-          <p class="text-muted mb-0">Organiza entregas, módulos y proyectos.</p>
-        </div>
+      <div class="audience-card">
+        <i class="bi bi-mortarboard-fill audience-icon"></i>
+        <h3>Estudiantes</h3>
+        <p>Organiza módulos, entregas y proyectos con más claridad que una lista
+          en papel.</p>
       </div>
-
-      <div class="col-md-4">
-        <div class="p-4 border rounded-4 bg-white h-100 shadow-sm">
-          <i class="bi bi-briefcase fs-3 text-primary"></i>
-          <h3 class="h5 mt-3">Freelancers</h3>
-          <p class="text-muted mb-0">Controla clientes y prioridades.</p>
-        </div>
+      <div class="audience-card">
+        <i class="bi bi-briefcase-fill audience-icon"></i>
+        <h3>Freelancers</h3>
+        <p>Lleva el control de clientes activos, tareas pendientes y prioridades
+          del mes.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CTA FINAL -->
-<section class="section-wave py-4">
-  <div class="p-4 p-lg-5 border rounded-4 bg-white shadow-sm text-center">
-    <h2 class="fw-bold mb-2">Comienza hoy</h2>
-    <p class="text-muted mb-4">
-      Crea tu cuenta o entra a la demo y revisa el tablero.
-    </p>
-    <div class="d-flex justify-content-center gap-2 flex-wrap">
-      <a class="btn btn-primary px-4" href="/register">
-        <i class="bi bi-person-plus me-1"></i>
-        Registrarse
-      </a>
-      <a class="btn btn-outline-primary px-4" href="/login">
-        <i class="bi bi-box-arrow-in-right me-1"></i>
-        Iniciar sesión
-      </a>
+<section class="section-cta">
+  <div class="container">
+    <div class="cta-inner">
+      <p class="section-eyebrow">Empieza hoy</p>
+      <h2>Tu primer tablero<br />en menos de 5 minutos.</h2>
+      <p class="cta-desc">Crea tu cuenta, añade tareas y organiza tu sprint
+        desde el primer día.</p>
+      <div class="cta-actions">
+        <a class="btn-hero-primary" href="/register">
+          Crear cuenta gratis
+          <i class="bi bi-arrow-right"></i>
+        </a>
+        <a class="btn-hero-ghost btn-hero-ghost-light" href="/login">
+          Ya tengo cuenta
+        </a>
+      </div>
     </div>
   </div>
 </section>

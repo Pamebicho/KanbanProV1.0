@@ -80,11 +80,11 @@ app.post("/tareas", (req, res) => {
   try {
     const { title, description, dueDate, assignee, priority } = req.body;
 
-    if (!title || !description || !dueDate || !assignee || !priority) {
+    if (!title || !dueDate || !assignee || !priority) {
       return res
         .status(400)
         .send(
-          "Faltan datos obligatorios (title, description, dueDate, assignee, priority).",
+          "Faltan datos obligatorios (title, dueDate, assignee, priority).",
         );
     }
 
@@ -103,7 +103,7 @@ app.post("/tareas", (req, res) => {
       id: internalId,
       publicId,
       title: title.trim(),
-      description: description.trim(),
+      description: (description || "").trim(),
       dueDate,
       assignee: assignee.trim(),
       priority,

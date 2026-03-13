@@ -1,84 +1,142 @@
 <div class="auth-outer">
   <div class="auth-frame">
-    <!-- IZQUIERDA -->
-    <section class="auth-left">
-      <div class="auth-brand">
-        <span class="brand-mark"></span>
-        <span class="brand-name">KanbanPro</span>
-      </div>
 
-      <div class="mt-4">
-        <p class="auth-kicker mb-2">Bienvenido de vuelta</p>
-        <h1 class="auth-title mb-4">Iniciar sesión</h1>
+    <!-- IZQUIERDA — formulario -->
+    <section class="auth-left">
+      <a class="auth-brand" href="/">
+        <i class="bi bi-rocket-takeoff-fill"></i>
+        <span>KanbanPro</span>
+      </a>
+
+      <div class="auth-form-wrap">
+        <p class="auth-kicker">Bienvenido de vuelta</p>
+        <h1 class="auth-title">Iniciar sesión</h1>
 
         <form>
           <div class="mb-3">
-            <label class="form-label auth-label">Correo electrónico</label>
-            <div class="auth-input">
+            <label class="auth-label">Correo electrónico</label>
+            <div class="auth-input-wrap">
+              <i class="bi bi-envelope auth-input-icon"></i>
               <input
-                class="form-control auth-control"
+                class="auth-control"
                 type="email"
                 placeholder="ejemplo@empresa.com"
               />
-              <i class="bi bi-envelope auth-icon"></i>
             </div>
           </div>
 
           <div class="mb-2">
-            <label class="form-label auth-label">Contraseña</label>
-            <div class="auth-input">
+            <label class="auth-label">Contraseña</label>
+            <div class="auth-input-wrap">
+              <i class="bi bi-lock auth-input-icon"></i>
               <input
-                class="form-control auth-control"
+                class="auth-control"
                 type="password"
                 placeholder="••••••••"
               />
-              <i class="bi bi-eye auth-icon"></i>
             </div>
           </div>
 
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="remember" />
-              <label
-                class="form-check-label"
-                for="remember"
-                style="color:#94a3b8;font-size:.9rem;"
-              >
-                Recuérdame
-              </label>
-            </div>
-            <a class="auth-link" href="#" style="font-size:.9rem;">Olvidé mi
-              contraseña</a>
+          <div class="auth-row mb-4">
+            <label class="auth-check">
+              <input type="checkbox" />
+              <span>Recuérdame</span>
+            </label>
+            <a class="auth-link" href="#">Olvidé mi contraseña</a>
           </div>
 
-          <!-- Simulación: entra directo al dashboard -->
-          <a class="btn auth-btn w-100" href="/dashboard">Iniciar sesión</a>
+          <a class="auth-btn" href="/dashboard">Iniciar sesión</a>
 
-          <div class="auth-divider my-4">
+          <div class="auth-divider">
             <span>o continuar con</span>
           </div>
 
           <div class="auth-social">
-            <button class="btn auth-social-btn" type="button" disabled>
-              <i class="bi bi-facebook"></i>
-            </button>
-            <button class="btn auth-social-btn" type="button" disabled>
+            <button
+              class="auth-social-btn"
+              type="button"
+              disabled
+              aria-label="Google"
+            >
               <i class="bi bi-google"></i>
             </button>
-            <button class="btn auth-social-btn" type="button" disabled>
+            <button
+              class="auth-social-btn"
+              type="button"
+              disabled
+              aria-label="GitHub"
+            >
+              <i class="bi bi-github"></i>
+            </button>
+            <button
+              class="auth-social-btn"
+              type="button"
+              disabled
+              aria-label="Apple"
+            >
               <i class="bi bi-apple"></i>
             </button>
           </div>
 
-          <p class="auth-foot mt-4 mb-0">
+          <p class="auth-foot">
             ¿No tienes cuenta?
-            <a class="auth-link" href="/register">Regístrate</a>
+            <a class="auth-link" href="/register">Regístrate gratis</a>
           </p>
         </form>
       </div>
     </section>
 
-    <!-- DERECHA -->
-    <aside class="auth-right" aria-hidden="true"></aside>
+    <!-- DERECHA — panel de marca -->
+    <aside class="auth-right" aria-hidden="true">
+      <div class="auth-right-inner">
+
+        <div class="auth-right-logo">
+          <i class="bi bi-rocket-takeoff-fill"></i>
+        </div>
+
+        <h2 class="auth-right-title">
+          Organiza tu trabajo.<br />Entrega con orden.
+        </h2>
+
+        <p class="auth-right-desc">
+          KanbanPro te da el tablero que necesitas para mantener el foco, mover
+          tareas con claridad y cerrar cada sprint sin caos.
+        </p>
+
+        <div class="auth-features">
+          <div class="auth-feature">
+            <div class="auth-feature-icon">
+              <i class="bi bi-kanban-fill"></i>
+            </div>
+            <div>
+              <p class="auth-feature-title">Tablero visual</p>
+              <p class="auth-feature-desc">Columnas claras, drag & drop incluido</p>
+            </div>
+          </div>
+
+          <div class="auth-feature">
+            <div class="auth-feature-icon">
+              <i class="bi bi-funnel-fill"></i>
+            </div>
+            <div>
+              <p class="auth-feature-title">Prioridades definidas</p>
+              <p class="auth-feature-desc">Alta, media o baja en cada tarea</p>
+            </div>
+          </div>
+
+          <div class="auth-feature">
+            <div class="auth-feature-icon">
+              <i class="bi bi-database-check"></i>
+            </div>
+            <div>
+              <p class="auth-feature-title">Datos persistentes</p>
+              <p class="auth-feature-desc">Todo guardado, siempre disponible</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
   </div>
 </div>

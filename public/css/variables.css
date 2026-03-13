@@ -1,0 +1,78 @@
+/* =========================
+   VARIABLES GLOBALES
+   ========================= */
+:root {
+  /* ===== Colores de marca ===== */
+  --primary: #0f2f6b;
+  --primary-strong: #0b2554;
+  --primary-soft: #1f4fa3;
+  --primary-light: #e8f0fb;
+
+  --accent-yellow: #f2b705;
+  --accent-yellow-strong: #d89a00;
+  --accent-yellow-soft: #fff6d6;
+
+  /* ===== Colores de apoyo ===== */
+  --accent-green: #8dcf32;
+  --accent-green-soft: #f1fadf;
+
+  --accent-blue: #55c8ff;
+  --accent-blue-soft: #e8f7ff;
+
+  /* ===== Neutros ===== */
+  --ink: #0b1b2b;
+  --text: #0b1b2b;
+  --text-soft: #334155;
+  --muted: #5b6b7f;
+  --text-muted: #5b6b7f;
+  --text-faint: #94a3b8;
+
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-soft: #f3f6fb;
+  --line: #d9e1ec;
+
+  /* ===== Estados ===== */
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+
+  /* ===== Dashboard / Kanban ===== */
+  --todo: #2e6cff;
+  --todo-soft: rgba(46, 108, 255, 0.1);
+
+  --doing: #f97316;
+  --doing-soft: rgba(249, 115, 22, 0.12);
+
+  --done: #16a34a;
+  --done-soft: rgba(22, 163, 74, 0.12);
+
+  --reopened: #7c3aed;
+  --reopened-soft: rgba(124, 58, 237, 0.12);
+
+  --priority-high: #e11d48;
+  --priority-med: #f97316;
+  --priority-low: #16a34a;
+
+  /* ===== Tipografía ===== */
+  --font-sans: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* ===== Bordes ===== */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  /* ===== Sombras ===== */
+  --shadow-sm: 0 6px 18px rgba(11, 27, 43, 0.06);
+  --shadow-md: 0 14px 34px rgba(11, 27, 43, 0.1);
+  --shadow-lg: 0 24px 54px rgba(11, 27, 43, 0.14);
+
+  /* ===== Espaciado ===== */
+  --section-space: 5rem;
+  --section-space-mobile: 3.5rem;
+
+  /* ===== Transiciones ===== */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.25s ease;
+}

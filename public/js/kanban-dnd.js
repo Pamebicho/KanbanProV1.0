@@ -83,15 +83,15 @@ function attachDnD() {
       // Detectar columna origen (antes de mover)
       const fromZone = cardEl.closest(".kanban-col-body[data-list-id]");
 
-      // ✅ 1) Mover en DOM instantáneo
+      // 1) Mover en DOM instantáneo
       zone.prepend(cardEl);
 
-      // ✅ 2) Actualizar placeholders + contadores
+      // 2) Actualizar placeholders + contadores
       ensureEmptyPlaceholder(zone);
       if (fromZone && fromZone !== zone) ensureEmptyPlaceholder(fromZone);
       updateBadges();
 
-      // ✅ 3) Guardar en servidor
+      // 3) Guardar en servidor
       try {
         const resp = await fetch("/tareas/mover", {
           method: "PATCH",
@@ -121,5 +121,5 @@ function attachDnD() {
 document.addEventListener("DOMContentLoaded", () => {
   attachDnD();
   updateBadges();
-  refreshEmptyPlaceholders(); // ✅ deja consistente el estado inicial
+  refreshEmptyPlaceholders(); // deja consistente el estado inicial
 });

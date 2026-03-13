@@ -1,8 +1,11 @@
 <div class="app-shell">
+
   <!-- SIDEBAR -->
-  <aside class="sidebar">
+  <aside class="sidebar" id="sidebar">
     <div class="sidebar-brand">
-      <div class="brand-dot"></div>
+      <div class="sidebar-brand-icon">
+        <i class="bi bi-rocket-takeoff-fill"></i>
+      </div>
       <div class="brand-text">
         <div class="brand-title">KanbanPro</div>
         <div class="brand-sub">Sprint Board</div>
@@ -33,39 +36,39 @@
     </nav>
 
     <div class="sidebar-footer">
-      <div class="user-chip">
-        <div class="avatar avatar-sm"><i class="bi bi-person-fill"></i></div>
-        <div>
-          <div class="user-name">Usuario</div>
-          <div class="user-role">Local JSON</div>
-        </div>
-      </div>
+      <a class="sidebar-logout" href="/login">
+        <i class="bi bi-box-arrow-left"></i>
+        <span>Cerrar sesión</span>
+      </a>
     </div>
   </aside>
 
+  <!-- OVERLAY SIDEBAR MOBILE -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
   <!-- MAIN -->
   <main class="main">
+
     <!-- TOP BAR -->
     <div class="topbar">
       <div class="topbar-left">
         <button
-          class="icon-btn d-lg-none"
+          class="topbar-icon-btn d-lg-none"
           type="button"
           id="sidebarToggle"
-          aria-label="Abrir/cerrar menú"
+          aria-label="Abrir menú"
         >
           <i class="bi bi-list"></i>
         </button>
-
         <div class="page-title">
           <div class="title">{{board.name}}</div>
-          <div class="subtitle">Persistencia local activa (data.json)</div>
+          <div class="subtitle">Panel de gestión de tareas</div>
         </div>
       </div>
 
       <div class="topbar-right">
         <button
-          class="btn btn-light btn-sm"
+          class="topbar-icon-btn"
           type="button"
           disabled
           aria-label="Notificaciones"
@@ -73,52 +76,46 @@
           <i class="bi bi-bell"></i>
         </button>
         <button
-          class="btn btn-light btn-sm"
+          class="topbar-icon-btn"
           type="button"
           disabled
           aria-label="Ayuda"
         >
           <i class="bi bi-question-circle"></i>
         </button>
-        <div class="avatar avatar-md" aria-label="Usuario"><i
-            class="bi bi-person-fill"
-          ></i></div>
+        <div class="topbar-avatar" aria-label="Usuario">
+          <i class="bi bi-person-fill"></i>
+        </div>
       </div>
     </div>
 
     <!-- TABS -->
     <div class="tabsbar">
-      <ul class="nav nav-tabs border-0">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">
-            <i class="bi bi-grid me-1"></i>Dashboard
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="bi bi-list-check me-1"></i>Tareas
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="bi bi-bug me-1"></i>Incidencias
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="bi bi-bar-chart me-1"></i>Reportes
-          </a>
-        </li>
-      </ul>
+      <a class="tab-item active" href="#">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+      <a class="tab-item" href="#">
+        <i class="bi bi-list-check"></i>
+        <span>Tareas</span>
+      </a>
+      <a class="tab-item" href="#">
+        <i class="bi bi-bug"></i>
+        <span>Incidencias</span>
+      </a>
+      <a class="tab-item" href="#">
+        <i class="bi bi-bar-chart"></i>
+        <span>Reportes</span>
+      </a>
     </div>
 
     <!-- SUBBAR -->
     <div class="subbar">
       <div class="filters">
-        <div class="filter">
+        <div class="filter-chip">
           <i class="bi bi-funnel"></i>
           <select
-            class="form-select form-select-sm"
+            class="filter-select"
             disabled
             aria-label="Filtro por prioridad"
           >
@@ -129,20 +126,20 @@
           </select>
         </div>
 
-        <div class="filter">
+        <div class="filter-chip">
           <i class="bi bi-person"></i>
           <input
-            class="form-control form-control-sm"
+            class="filter-input"
             placeholder="Asignada a..."
             disabled
             aria-label="Filtro por usuario"
           />
         </div>
 
-        <div class="filter">
+        <div class="filter-chip">
           <i class="bi bi-calendar3"></i>
           <input
-            class="form-control form-control-sm"
+            class="filter-input"
             type="date"
             disabled
             aria-label="Filtro por fecha"
@@ -150,85 +147,11 @@
         </div>
       </div>
 
-      <div class="actions">
-        <button
-          class="btn btn-primary btn-sm fw-semibold"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#createTask"
-          aria-expanded="false"
-          aria-controls="createTask"
-        >
-          <i class="bi bi-plus-circle me-1"></i>
+      <div class="subbar-actions">
+        <button class="dash-btn-primary" type="button" id="openCreateTask">
+          <i class="bi bi-plus-circle"></i>
           Crear tarea
         </button>
-      </div>
-    </div>
-
-    <!-- FORM -->
-    <div class="collapse" id="createTask">
-      <div class="card card-soft shadow-sm border-0 mb-3">
-        <div class="card-body">
-          <div class="d-flex align-items-center justify-content-between mb-2">
-            <h6 class="mb-0 fw-bold">Nueva tarea</h6>
-            <span class="text-muted small">Se crea en:
-              <strong>Por hacer</strong></span>
-          </div>
-
-          <form method="POST" action="/tareas" class="row g-2">
-            <div class="col-12 col-lg-4">
-              <label class="form-label small mb-1">Título</label>
-              <input
-                class="form-control"
-                name="title"
-                maxlength="60"
-                required
-              />
-            </div>
-
-            <div class="col-12 col-lg-3">
-              <label class="form-label small mb-1">Asignada a</label>
-              <input
-                class="form-control"
-                name="assignee"
-                maxlength="40"
-                required
-              />
-            </div>
-
-            <div class="col-6 col-lg-2">
-              <label class="form-label small mb-1">Fecha</label>
-              <input class="form-control" type="date" name="dueDate" required />
-            </div>
-
-            <div class="col-6 col-lg-3">
-              <label class="form-label small mb-1">Prioridad</label>
-              <select class="form-select" name="priority" required>
-                <option value="Alta">Alta</option>
-                <option value="Media" selected>Media</option>
-                <option value="Baja">Baja</option>
-              </select>
-            </div>
-
-            <div class="col-12">
-              <label class="form-label small mb-1">Descripción</label>
-              <textarea
-                class="form-control"
-                name="description"
-                rows="2"
-                maxlength="140"
-                required
-              ></textarea>
-            </div>
-
-            <div class="col-12 d-flex justify-content-end">
-              <button class="btn btn-primary fw-semibold" type="submit">
-                <i class="bi bi-check2-circle me-1"></i>
-                Crear
-              </button>
-            </div>
-          </form>
-        </div>
       </div>
     </div>
 
@@ -240,34 +163,29 @@
             <div class="col-head">
               <div class="col-title">
                 <span class="col-dot"></span>
-                <span class="fw-bold text-capitalize">{{this.title}}</span>
+                <span class="col-name">{{this.title}}</span>
               </div>
-
-              <!-- IMPORTANTE: esta clase debe coincidir con el JS -->
               <span class="count-badge" data-count>{{this.cards.length}}</span>
             </div>
 
-            <!-- DROP ZONE -->
             <div class="kanban-col-body" data-list-id="{{this.id}}">
               {{#if this.cards.length}}
                 {{#each this.cards}}
                   <div
-                    class="task-card shadow-sm"
+                    class="task-card"
                     draggable="true"
                     data-card-id="{{this.id}}"
                     data-priority="{{this.priority}}"
                     data-assignee="{{this.assignee}}"
+                    data-due="{{this.dueDate}}"
                   >
                     <div class="task-top">
                       <span class="task-id">
-                        {{#if this.publicId}}
-                          {{this.publicId}}
-                        {{else}}
-                          {{this.id}}
-                        {{/if}}
+                        {{#if
+                          this.publicId
+                        }}{{this.publicId}}{{else}}{{this.id}}{{/if}}
                       </span>
-
-                      <div class="avatar avatar-xs" aria-label="Asignado">
+                      <div class="task-avatar" aria-label="Asignado">
                         <i class="bi bi-person-fill"></i>
                       </div>
                     </div>
@@ -279,20 +197,154 @@
                       <span
                         class="pill pill-{{this.priority}}"
                       >{{this.priority}}</span>
-                      <span class="task-date">{{this.dueDate}}</span>
+                      <span
+                        class="task-date"
+                        data-due="{{this.dueDate}}"
+                      >{{this.dueDate}}</span>
                     </div>
                   </div>
                 {{/each}}
               {{else}}
-                <div class="empty-col text-muted small">Sin tareas por ahora.</div>
+                <div class="empty-col">Sin tareas por ahora.</div>
               {{/if}}
             </div>
           </section>
         {{/each}}
       </div>
     </div>
+
   </main>
+</div>
+
+<!-- ===== MODAL CREAR TAREA ===== -->
+<div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+  <div
+    class="modal-card"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+  >
+
+    <div class="modal-card-head">
+      <div class="modal-card-title-wrap">
+        <div class="modal-card-icon">
+          <i class="bi bi-plus-circle-fill"></i>
+        </div>
+        <div>
+          <h2 class="modal-card-title" id="modalTitle">Nueva tarea</h2>
+          <p class="modal-card-sub">Se creará en la columna
+            <strong>Por hacer</strong></p>
+        </div>
+      </div>
+      <button class="modal-close" id="closeModal" aria-label="Cerrar">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+
+    <form method="POST" action="/tareas" class="modal-card-body">
+      <div class="modal-grid">
+
+        <div class="modal-field modal-field-full">
+          <label class="modal-label">Título
+            <span class="modal-required">*</span></label>
+          <input
+            class="modal-control"
+            name="title"
+            maxlength="60"
+            placeholder="Ej: Diseñar pantalla de login"
+            required
+          />
+        </div>
+
+        <div class="modal-field">
+          <label class="modal-label">Asignada a
+            <span class="modal-required">*</span></label>
+          <div class="modal-input-wrap">
+            <i class="bi bi-person modal-input-icon"></i>
+            <input
+              class="modal-control modal-control-icon"
+              name="assignee"
+              maxlength="40"
+              placeholder="Nombre del responsable"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="modal-field">
+          <label class="modal-label">Fecha límite
+            <span class="modal-required">*</span></label>
+          <div class="modal-input-wrap">
+            <i class="bi bi-calendar3 modal-input-icon"></i>
+            <input
+              class="modal-control modal-control-icon"
+              type="date"
+              name="dueDate"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="modal-field modal-field-full">
+          <label class="modal-label">Prioridad</label>
+          <div class="modal-priority-group">
+            <label class="priority-opt priority-high">
+              <input type="radio" name="priority" value="Alta" />
+              <i class="bi bi-arrow-up-circle-fill"></i>
+              Alta
+            </label>
+            <label class="priority-opt priority-med">
+              <input type="radio" name="priority" value="Media" checked />
+              <i class="bi bi-dash-circle-fill"></i>
+              Media
+            </label>
+            <label class="priority-opt priority-low">
+              <input type="radio" name="priority" value="Baja" />
+              <i class="bi bi-arrow-down-circle-fill"></i>
+              Baja
+            </label>
+          </div>
+        </div>
+
+        <div class="modal-field modal-field-full">
+          <label class="modal-label">Descripción</label>
+          <textarea
+            class="modal-control"
+            name="description"
+            rows="3"
+            maxlength="140"
+            placeholder="Descripción breve de la tarea..."
+          ></textarea>
+        </div>
+
+      </div>
+
+      <div class="modal-card-foot">
+        <button
+          type="button"
+          class="dash-btn-ghost"
+          id="cancelModal"
+        >Cancelar</button>
+        <button type="submit" class="dash-btn-primary">
+          <i class="bi bi-check2-circle"></i>
+          Crear tarea
+        </button>
+      </div>
+    </form>
+
+  </div>
 </div>
 
 <script src="/js/kanban-dnd.js"></script>
 <script src="/js/sidebar.js"></script>
+<script>
+  var modalOverlay = document.getElementById('modalOverlay'); function
+  abrirModal() { modalOverlay.style.display = 'flex'; } function cerrarModal() {
+  modalOverlay.style.display = 'none'; }
+  document.getElementById('openCreateTask').onclick = abrirModal;
+  document.getElementById('closeModal').onclick = cerrarModal;
+  document.getElementById('cancelModal').onclick = cerrarModal;
+  modalOverlay.onclick = function(e) { if (e.target === modalOverlay)
+  cerrarModal(); }; document.onkeydown = function(e) { if (e.key === 'Escape')
+  cerrarModal(); };
+</script>
