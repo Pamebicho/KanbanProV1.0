@@ -62,11 +62,12 @@ app.post("/tareas", authMiddleware, createCard);
 app.patch("/tareas/mover", authMiddleware, moveCard);
 
 sequelize
-  .authenticate()
+  .sync({ alter: true })
   .then(() => {
     console.log("✅ Conexión a PostgreSQL exitosa");
+    console.log("✅ Tablas sincronizadas");
     app.listen(PORT, () =>
-      console.log(`🚀 Servidor en http://localhost:${PORT}`),
+      console.log(`🚀 Servidor corriendo en puerto ${PORT}`),
     );
   })
   .catch((err) => {
