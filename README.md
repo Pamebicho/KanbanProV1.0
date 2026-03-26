@@ -8,6 +8,10 @@ KanbanPro es una aplicación web que permite a los usuarios organizar su trabajo
 
 ---
 
+![Landing Page](assets/img/home.png)
+![Dashboard](assets/img/user-login.png)
+![Login](assets/img/dashboard.png)
+
 ✨ Funcionalidades
 Registro e inicio de sesión con autenticación JWT
 Tablero Kanban personal creado automáticamente al registrarse
