@@ -1,22 +1,35 @@
 🚀 KanbanPro
-Sistema web de gestión de tareas basado en metodología Kanban, desarrollado como proyecto de bootcamp con Node.js, Express y PostgreSQL.
+Sistema web de gestión de tareas basado en metodología Kanban, desarrollado como proyecto integrador del Bootcamp Full Stack
 
 ---
 
 📌 Descripción
-KanbanPro permite organizar el trabajo en columnas visuales (Por Hacer / En Progreso / Terminado), facilitando el seguimiento del flujo de tareas de forma clara y estructurada.
-Este repositorio corresponde al Sprint 2, que incorpora la capa de base de datos con Sequelize y PostgreSQL, modelos relacionales completos y una interfaz de usuario renovada con diseño profesional.
+KanbanPro es una aplicación web que permite a los usuarios organizar su trabajo en un tablero visual con columnas Por hacer, En progreso, Terminado y Reabierto. Cada usuario tiene su propio tablero con autenticación segura mediante JWT y contraseñas encriptadas con bcrypt.
 
 ---
 
-🛠️ Tecnologías utilizadas
+✨ Funcionalidades
+Registro e inicio de sesión con autenticación JWT
+Tablero Kanban personal creado automáticamente al registrarse
+Creación de tareas con título, descripción, prioridad, asignado y fecha límite
+Drag & drop entre columnas con persistencia en base de datos
+Cierre de sesión seguro con headers anti-caché
+Redirección automática si el usuario ya tiene sesión activa
+API RESTful completa para gestión de tableros, listas y tarjetas
+Diseño responsive para mobile, tablet y desktop
+
+---
+
+🛠️ Tecnologías
 Capa Tecnología
-Runtime Node.js
+Runtime Node.js 18+
 Framework Express 5
 Vistas Handlebars (express-handlebars)
 Base de datos PostgreSQL
 ORM Sequelize 6
-Estilos CSS3 con variables personalizadas, Bootstrap Icons
+Autenticación JWT + bcryptjs
+Sesión Cookie httpOnly
+Estilos CSS3 con variables, Bootstrap Icons
 Frontend JS Vanilla JS (drag & drop nativo)
 Dev tools Nodemon, dotenv
 
@@ -27,58 +40,79 @@ Dev tools Nodemon, dotenv
 ```
 kanbanpro/
 │
-├── app.js                  # Servidor Express + rutas + lógica principal
-├── data.json               # Datos de la interfaz
+├── app.js                        # Servidor Express, middlewares y rutas principales
 ├── package.json
 │
 ├── config/
-│   └── db.js               # Configuración de conexión a PostgreSQL con Sequelize
+│   └── db.js                     # Conexión a PostgreSQL con Sequelize
+│
+├── middleware/
+│   └── authMiddleware.js         # Verificación de JWT (cookie o header Authorization)
+│
+├── controllers/
+│   ├── authController.js         # Registro, login y logout
+│   ├── dashboardController.js    # Dashboard, crear y mover tarjetas
+│   ├── boardController.js        # CRUD de tableros
+│   ├── listController.js         # CRUD de listas
+│   └── cardController.js         # CRUD de tarjetas
+│
+├── routes/
+│   ├── auth.js                   # POST /api/auth/register, /api/auth/login
+│   ├── boards.js                 # GET/POST/PUT/DELETE /api/boards
+│   ├── lists.js                  # POST/PUT/DELETE /api/boards/:id/lists
+│   └── cards.js                  # POST/PUT/DELETE /api/lists/:id/cards
 │
 ├── models/
-│   ├── index.js            # Importa modelos y define relaciones (hasMany / belongsTo)
-│   ├── Usuario.js          # Modelo: id, nombre, email, password
-│   ├── Tablero.js          # Modelo: id, nombre, descripcion, usuarioId (FK)
-│   ├── Lista.js            # Modelo: id, nombre, posicion, tableroId (FK)
-│   └── Tarjeta.js          # Modelo: id, titulo, descripcion, estado, prioridad, listaId (FK)
+│   ├── index.js                  # Relaciones hasMany / belongsTo
+│   ├── User.js                   # id, nombre, email, password
+│   ├── Board.js                  # id, nombre, descripcion, userId
+│   ├── List.js                   # id, nombre, posicion, boardId
+│   └── Card.js                   # id, titulo, descripcion, estado, prioridad, asignado, fechaLimite, listId
 │
 ├── database/
-│   ├── sync.js             # Crea las tablas en la BD (force: true)
-│   ├── seed.js             # Pobla la BD con datos de prueba
-│   ├── test-db.js          # Verifica conexión a PostgreSQL
-│   └── test-crud.js        # Prueba operaciones CRUD completas
+│   ├── sync.js                   # Crea las tablas en PostgreSQL
+│   ├── seed.js                   # Pobla la BD con datos de prueba
+│   ├── test-db.js                # Verifica conexión a PostgreSQL
+│   └── test-crud.js              # Prueba operaciones CRUD
 │
 ├── public/
-│   ├── css/
-│   │   ├── variables.css   # Variables CSS globales (colores, tipografía, espaciado)
-│   │   ├── base.css        # Reset y estilos base
-│   │   ├── main.css        # Estilos generales de la app
-│   │   ├── components.css  # Componentes reutilizables
-│   │   ├── home.css        # Estilos de la landing page
-│   │   ├── auth.css        # Estilos de login y registro
-│   │   └── dashboard.css   # Estilos del tablero Kanban
+│   ├── css/                      # variables, base, main, components, dashboard, auth, home
 │   └── js/
-│       ├── kanban-dnd.js   # Drag & drop entre columnas
-│       └── sidebar.js      # Toggle del sidebar en mobile
+│       ├── kanban-dnd.js         # Drag & drop con persistencia
+│       └── sidebar.js            # Toggle sidebar en mobile
 │
 └── views/
     ├── layouts/
-    │   ├── main.hbs        # Layout principal (navbar + footer)
-    │   ├── auth.hbs        # Layout minimalista para login/registro
-    │   └── dashboard.hbs   # Layout del tablero (sidebar + topbar)
-    ├── home.hbs            # Landing page
-    ├── login.hbs           # Formulario de inicio de sesión
-    ├── register.hbs        # Formulario de registro
-    └── dashboard.hbs       # Tablero Kanban con modal de creación de tareas
+    │   ├── main.hbs              # Layout landing page
+    │   ├── auth.hbs              # Layout login / registro
+    │   └── dashboard.hbs         # Layout tablero
+    ├── home.hbs
+    ├── login.hbs
+    ├── register.hbs
+    └── dashboard.hbs
 ```
 
 ---
 
-🚀 Instalación y ejecución
+🗃️ Modelo de datos
+
+```
+User (1) ──────< (N) Board
+Board (1) ──────< (N) List
+List  (1) ──────< (N) Card
+```
+
+---
+
+🚀 Instalación local
+Requisitos previos
+Node.js 18+
+PostgreSQL 14+
 
 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/Pamebicho/EF-M6-ProSprin1
+git clone https://github.com/Pamebicho/KanbanProV1.0.git
 cd kanbanpro
 ```
 
@@ -89,27 +123,22 @@ npm install
 ```
 
 3. Configurar variables de entorno
-   Crear un archivo `.env` en la raíz del proyecto:
+   Crear un archivo `.env` en la raíz:
 
 ```env
-DATABASE_URL=postgres://usuario:contraseña@localhost:5432/kanbanpro
+DATABASE_URL=postgres://usuario:contraseña@localhost:5432/kanbanpro_db
+JWT_SECRET=tu_clave_secreta_aqui
 PORT=3000
 ```
 
-4. Ejecutar scripts de base de datos
+4. Preparar la base de datos
 
 ```bash
-# Verificar conexión a PostgreSQL
-npm run test:db
-
-# Crear tablas en la base de datos
+# Crear las tablas
 npm run sync
 
 # Poblar con datos de prueba
 npm run seed
-
-# Probar operaciones CRUD completas
-npm run test:crud
 ```
 
 5. Iniciar el servidor
@@ -128,53 +157,48 @@ npm run dev
 http://localhost:3000
 ```
 
----
+## Usuario de prueba: `pamela@email.com` / `123456`
 
-🗃️ Modelos de base de datos
-El Sprint 2 implementa 4 modelos Sequelize con relaciones completas:
+🔐 API RESTful
+Todos los endpoints de la API requieren autenticación. Incluir el token en el header:
 
 ```
-Usuario (1) ──────< (N) Tablero
-Tablero (1) ──────< (N) Lista
-Lista   (1) ──────< (N) Tarjeta
+Authorization: Bearer <token>
 ```
 
-## Cada modelo incluye `timestamps: true` (campos `createdAt` y `updatedAt` automáticos).
+Autenticación
+Método Ruta Descripción Auth
+POST `/api/auth/register` Crear cuenta nueva No
+POST `/api/auth/login` Iniciar sesión, devuelve JWT No
 
-🔐 Rutas disponibles (Sprint 2)
+Tableros
 Método Ruta Descripción
-GET `/` Landing page
-GET `/login` Formulario de inicio de sesión
-GET `/register` Formulario de registro
-GET `/dashboard` Tablero Kanban
-POST `/tareas` Crear nueva tarea
-PATCH `/tareas/mover` Mover tarea entre columnas (drag & drop)
+GET `/api/boards` Listar tableros del usuario
+POST `/api/boards` Crear tablero
+PUT `/api/boards/:id` Actualizar tablero
+DELETE `/api/boards/:id` Eliminar tablero
 
-> ⚠️ En Sprint 2 la autenticación es visual (no funcional). La integración real con JWT y bcryptjs se implementa en Sprint 3.
+Listas
+Método Ruta Descripción
+POST `/api/boards/:boardId/lists` Crear lista
+PUT `/api/boards/:boardId/lists/:id` Actualizar lista
+DELETE `/api/boards/:boardId/lists/:id` Eliminar lista
 
----
-
-✅ Funcionalidades del Sprint 2
-[x] Modelos Sequelize: `Usuario`, `Tablero`, `Lista`, `Tarjeta`
-[x] Relaciones `hasMany` / `belongsTo` con claves foráneas
-[x] Script `sync.js` — crea tablas en PostgreSQL
-[x] Script `seed.js` — pobla la BD con datos de prueba (2 usuarios, 3 tableros, 3 listas, 3 tarjetas)
-[x] Script `test-db.js` — verifica conexión a la base de datos
-[x] Script `test-crud.js` — prueba Create, Read, Update, Delete completo
-[x] Interfaz de usuario renovada (navbar, footer, auth, dashboard)
-[x] Modal de creación de tareas con formulario completo
-[x] Drag & drop funcional entre columnas del tablero
-[x] Diseño responsive (mobile, tablet, desktop)
+Tarjetas
+Método Ruta Descripción
+POST `/api/lists/:listId/cards` Crear tarjeta
+PUT `/api/lists/:listId/cards/:id` Actualizar tarjeta
+DELETE `/api/lists/:listId/cards/:id` Eliminar tarjeta
 
 ---
 
-🗺️ Roadmap
-Sprint Estado Descripción
-Sprint 1 ✅ Completado Prototipo con data.json, Express + Handlebars, drag & drop
-Sprint 2 ✅ Completado Modelos Sequelize/PostgreSQL, mejoras de UI
-Sprint 3 🔜 Pendiente API RESTful, JWT, bcryptjs, autenticación real
+📈 Sprints del proyecto
+Sprint Módulo Estado Descripción
+Sprint 1 M6 ✅ Completado Prototipo con data.json, Express + Handlebars, drag & drop
+Sprint 2 M7 ✅ Completado Modelos Sequelize, PostgreSQL, scripts de BD
+Sprint 3 M8 ✅ Completado API RESTful, JWT, bcrypt, controllers, autenticación completa
 
 ---
 
 👩‍💻 Autora
-Pamela Gutiérrez
+Pamela Gutiérrez M.

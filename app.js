@@ -1,179 +1,75 @@
+require("dotenv").config();
 const path = require("path");
-const fs = require("fs");
 const express = require("express");
+const cookieParser = require("cookie-parser");
 const { engine } = require("express-handlebars");
+const { sequelize } = require("./config/db");
+const authMiddleware = require("./middleware/authMiddleware");
+const {
+  getDashboard,
+  createCard,
+  moveCard,
+} = require("./controllers/dashboardController");
+const { logout } = require("./controllers/authController");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// --------------------
-// Middlewares
-// --------------------
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-// --------------------
-// Configuración Handlebars
-// --------------------
 app.engine("hbs", engine({ extname: ".hbs" }));
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "views"));
 
-// --------------------
-// Data helpers
-// --------------------
-const dataFilePath = path.join(__dirname, "data.json");
+// Middleware que redirige al dashboard si el usuario ya tiene sesión activa
+const redirectIfLoggedIn = (req, res, next) => {
+  const token = req.cookies?.token;
+  if (token) return res.redirect("/dashboard");
+  next();
+};
 
-function readData() {
-  const raw = fs.readFileSync(dataFilePath, "utf8");
-  return JSON.parse(raw);
-}
+// Middleware anti-caché para rutas protegidas
+const noCache = (req, res, next) => {
+  res.setHeader(
+    "Cache-Control",
+    "no-store, no-cache, must-revalidate, private",
+  );
+  res.setHeader("Pragma", "no-cache");
+  res.setHeader("Expires", "0");
+  next();
+};
 
-function writeData(data) {
-  fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2), "utf8");
-}
+app.use("/api/auth", require("./routes/auth"));
+app.use("/api/boards", require("./routes/boards"));
+app.use("/api/boards", require("./routes/lists"));
+app.use("/api/lists", require("./routes/cards"));
 
-function getNextPublicId(board, prefix = "DC-", startAt = 100) {
-  let max = startAt - 1;
+app.get("/", redirectIfLoggedIn, (req, res) => res.render("home"));
+app.get("/home", redirectIfLoggedIn, (req, res) => res.render("home"));
+app.get("/login", redirectIfLoggedIn, (req, res) =>
+  res.render("login", { layout: "auth" }),
+);
+app.get("/register", redirectIfLoggedIn, (req, res) =>
+  res.render("register", { layout: "auth" }),
+);
+app.get("/logout", noCache, logout);
 
-  board.lists.forEach((list) => {
-    list.cards.forEach((card) => {
-      if (
-        typeof card.publicId === "string" &&
-        card.publicId.startsWith(prefix)
-      ) {
-        const num = parseInt(card.publicId.slice(prefix.length), 10);
-        if (!Number.isNaN(num) && num > max) max = num;
-      }
-    });
+app.get("/dashboard", noCache, authMiddleware, getDashboard);
+app.post("/tareas", authMiddleware, createCard);
+app.patch("/tareas/mover", authMiddleware, moveCard);
+
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log("✅ Conexión a PostgreSQL exitosa");
+    app.listen(PORT, () =>
+      console.log(`🚀 Servidor en http://localhost:${PORT}`),
+    );
+  })
+  .catch((err) => {
+    console.error("❌ Error PostgreSQL:", err.message);
+    process.exit(1);
   });
-
-  return `${prefix}${max + 1}`;
-}
-
-// --------------------
-// Rutas (HU-01)
-// --------------------
-app.get("/", (req, res) => res.render("home"));
-app.get("/home", (req, res) => res.render("home"));
-app.get("/login", (req, res) => res.render("login", { layout: "auth" }));
-app.get("/register", (req, res) => res.render("register", { layout: "auth" }));
-
-// --------------------
-// Dashboard (HU-02)
-// --------------------
-app.get("/dashboard", (req, res) => {
-  try {
-    const data = readData();
-    res.render("dashboard", { layout: "dashboard", board: data.board });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error leyendo data.json");
-  }
-});
-
-// --------------------
-// Crear tarea completa (siempre en "todo")
-// --------------------
-app.post("/tareas", (req, res) => {
-  try {
-    const { title, description, dueDate, assignee, priority } = req.body;
-
-    if (!title || !dueDate || !assignee || !priority) {
-      return res
-        .status(400)
-        .send(
-          "Faltan datos obligatorios (title, dueDate, assignee, priority).",
-        );
-    }
-
-    const data = readData();
-
-    const todoList = data.board.lists.find((l) => l.id === "todo");
-    if (!todoList) return res.status(400).send("No existe la lista 'todo'.");
-
-    // ID público corto (secuencial, sin duplicados)
-    const publicId = getNextPublicId(data.board, "DC-", 100);
-
-    // ID interno (único para sistema / drag&drop)
-    const internalId = `c${Date.now()}${Math.floor(Math.random() * 1000)}`;
-
-    const newCard = {
-      id: internalId,
-      publicId,
-      title: title.trim(),
-      description: (description || "").trim(),
-      dueDate,
-      assignee: assignee.trim(),
-      priority,
-      createdAt: new Date().toISOString(),
-    };
-
-    todoList.cards.unshift(newCard);
-    writeData(data);
-
-    res.redirect("/dashboard");
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error guardando la nueva tarea completa");
-  }
-});
-
-// --------------------
-// Mover tarea entre listas (drag & drop)
-// --------------------
-app.patch("/tareas/mover", (req, res) => {
-  try {
-    const { cardId, toListId } = req.body;
-
-    if (!cardId || !toListId) {
-      return res
-        .status(400)
-        .json({ ok: false, message: "Faltan cardId o toListId" });
-    }
-
-    const data = readData();
-    const lists = data.board.lists;
-
-    let movedCard = null;
-
-    for (const list of lists) {
-      const idx = list.cards.findIndex((c) => c.id === cardId);
-      if (idx !== -1) {
-        movedCard = list.cards.splice(idx, 1)[0];
-        break;
-      }
-    }
-
-    if (!movedCard) {
-      return res
-        .status(404)
-        .json({ ok: false, message: "Tarea no encontrada" });
-    }
-
-    const destList = lists.find((l) => l.id === toListId);
-    if (!destList) {
-      return res
-        .status(404)
-        .json({ ok: false, message: "Lista destino no existe" });
-    }
-
-    destList.cards.unshift(movedCard);
-    writeData(data);
-
-    return res.json({ ok: true });
-  } catch (error) {
-    console.error(error);
-    return res
-      .status(500)
-      .json({ ok: false, message: "Error moviendo la tarea" });
-  }
-});
-
-// --------------------
-// Servidor
-// --------------------
-app.listen(PORT, () => {
-  console.log(`Servidor escuchando en http://localhost:${PORT}`);
-});

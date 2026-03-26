@@ -1,59 +1,45 @@
 const { sequelize } = require("../config/db");
-const { Usuario, Tablero, Lista, Tarjeta } = require("../models");
+const { Board, List, Card } = require("../models");
 
 async function testCRUD() {
   try {
     console.log("===== PRUEBA CRUD =====");
 
-    // CREATE
-    console.log("\nCreando nueva tarjeta...");
-
-    const lista = await Lista.findOne();
-
-    const nuevaTarjeta = await Tarjeta.create({
-      titulo: "Nueva tarea CRUD",
-      descripcion: "Prueba de creación",
-      listaId: lista.id,
-    });
-
-    console.log("Tarjeta creada:", nuevaTarjeta.titulo);
-
-    // READ
-    console.log("\nLeyendo tablero con listas y tarjetas...");
-
-    const tablero = await Tablero.findOne({
+    const board = await Board.findOne({
       include: {
-        model: Lista,
-        as: "listas",
-        include: {
-          model: Tarjeta,
-          as: "tarjetas",
-        },
+        model: List,
+        as: "lists",
+        include: { model: Card, as: "cards" },
       },
     });
+    console.log(
+      "✅ READ   — Tablero:",
+      board.nombre,
+      "| Listas:",
+      board.lists.length,
+    );
 
-    console.log("Tablero encontrado:", tablero.nombre);
+    const list = await List.findOne();
+    const newCard = await Card.create({
+      titulo: "Tarjeta de prueba CRUD",
+      descripcion: "Creada por test-crud.js",
+      estado: "pendiente",
+      prioridad: "media",
+      listId: list.id,
+    });
+    console.log("✅ CREATE — Tarjeta creada:", newCard.titulo);
 
-    // UPDATE
-    console.log("\nActualizando tarjeta...");
+    await newCard.update({ titulo: "Tarjeta actualizada" });
+    console.log("✅ UPDATE — Título actualizado:", newCard.titulo);
 
-    nuevaTarjeta.titulo = "Tarjeta actualizada";
-    await nuevaTarjeta.save();
+    await newCard.destroy();
+    console.log("✅ DELETE — Tarjeta eliminada");
 
-    console.log("Tarjeta actualizada:", nuevaTarjeta.titulo);
-
-    // DELETE
-    console.log("\nEliminando tarjeta...");
-
-    await nuevaTarjeta.destroy();
-
-    console.log("Tarjeta eliminada correctamente");
-
-    console.log("\nCRUD completado correctamente");
-
-    process.exit();
+    console.log("\n🎉 CRUD completado correctamente");
+    process.exit(0);
   } catch (error) {
-    console.error("Error en CRUD:", error);
+    console.error("❌ Error en CRUD:", error.message);
+    process.exit(1);
   }
 }
 

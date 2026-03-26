@@ -12,7 +12,14 @@
         <p class="auth-kicker">Bienvenido de vuelta</p>
         <h1 class="auth-title">Iniciar sesión</h1>
 
-        <form>
+        {{#if error}}
+          <div class="auth-error">
+            <i class="bi bi-exclamation-circle"></i>
+            {{error}}
+          </div>
+        {{/if}}
+
+        <form method="POST" action="/api/auth/login">
           <div class="mb-3">
             <label class="auth-label">Correo electrónico</label>
             <div class="auth-input-wrap">
@@ -20,7 +27,9 @@
               <input
                 class="auth-control"
                 type="email"
+                name="email"
                 placeholder="ejemplo@empresa.com"
+                required
               />
             </div>
           </div>
@@ -32,7 +41,9 @@
               <input
                 class="auth-control"
                 type="password"
+                name="password"
                 placeholder="••••••••"
+                required
               />
             </div>
           </div>
@@ -45,7 +56,7 @@
             <a class="auth-link" href="#">Olvidé mi contraseña</a>
           </div>
 
-          <a class="auth-btn" href="/dashboard">Iniciar sesión</a>
+          <button class="auth-btn" type="submit">Iniciar sesión</button>
 
           <div class="auth-divider">
             <span>o continuar con</span>

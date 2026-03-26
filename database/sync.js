@@ -1,7 +1,7 @@
 const { sequelize } = require("../config/db");
 require("../models");
 
-async function sincronizarBD() {
+async function sync() {
   try {
     await sequelize.sync({ force: true });
     console.log("✅ Tablas creadas correctamente");
@@ -12,4 +12,4 @@ async function sincronizarBD() {
   }
 }
 
-sincronizarBD();
+sync();

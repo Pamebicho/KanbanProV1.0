@@ -427,3 +427,21 @@
     padding: 24px 20px;
   }
 }
+
+/* ---- Mensaje de error en auth ---- */
+.auth-error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fcebeb;
+  color: #a32d2d;
+  border: 1px solid #f09595;
+  border-radius: var(--radius-md, 8px);
+  padding: 10px 14px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+.auth-error i {
+  font-size: 15px;
+  flex-shrink: 0;
+}

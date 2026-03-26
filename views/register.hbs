@@ -12,12 +12,25 @@
         <p class="auth-kicker">Comienza tu experiencia</p>
         <h1 class="auth-title">Crear cuenta</h1>
 
-        <form>
+        {{#if error}}
+          <div class="auth-error">
+            <i class="bi bi-exclamation-circle"></i>
+            {{error}}
+          </div>
+        {{/if}}
+
+        <form method="POST" action="/api/auth/register">
           <div class="mb-3">
             <label class="auth-label">Nombre completo</label>
             <div class="auth-input-wrap">
               <i class="bi bi-person auth-input-icon"></i>
-              <input class="auth-control" type="text" placeholder="Tu nombre" />
+              <input
+                class="auth-control"
+                type="text"
+                name="nombre"
+                placeholder="Tu nombre"
+                required
+              />
             </div>
           </div>
 
@@ -28,7 +41,9 @@
               <input
                 class="auth-control"
                 type="email"
+                name="email"
                 placeholder="ejemplo@email.com"
+                required
               />
             </div>
           </div>
@@ -40,12 +55,15 @@
               <input
                 class="auth-control"
                 type="password"
+                name="password"
                 placeholder="Mínimo 8 caracteres"
+                required
+                minlength="8"
               />
             </div>
           </div>
 
-          <a class="auth-btn" href="/dashboard">Crear cuenta gratis</a>
+          <button class="auth-btn" type="submit">Crear cuenta gratis</button>
 
           <div class="auth-divider">
             <span>o registrarse con</span>

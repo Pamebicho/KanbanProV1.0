@@ -1,44 +1,18 @@
-const Usuario = require("./Usuario");
-const Tablero = require("./Tablero");
-const Lista = require("./Lista");
-const Tarjeta = require("./Tarjeta");
+const User = require("./User");
+const Board = require("./Board");
+const List = require("./List");
+const Card = require("./Card");
 
-// Relaciones Usuario -> Tablero
-Usuario.hasMany(Tablero, {
-  foreignKey: "usuarioId",
-  as: "tableros",
-});
+// User -> Board
+User.hasMany(Board, { foreignKey: "userId", as: "boards" });
+Board.belongsTo(User, { foreignKey: "userId", as: "user" });
 
-Tablero.belongsTo(Usuario, {
-  foreignKey: "usuarioId",
-  as: "usuario",
-});
+// Board -> List
+Board.hasMany(List, { foreignKey: "boardId", as: "lists" });
+List.belongsTo(Board, { foreignKey: "boardId", as: "board" });
 
-// Relaciones Tablero -> Lista
-Tablero.hasMany(Lista, {
-  foreignKey: "tableroId",
-  as: "listas",
-});
+// List -> Card
+List.hasMany(Card, { foreignKey: "listId", as: "cards" });
+Card.belongsTo(List, { foreignKey: "listId", as: "list" });
 
-Lista.belongsTo(Tablero, {
-  foreignKey: "tableroId",
-  as: "tablero",
-});
-
-// Relaciones Lista -> Tarjeta
-Lista.hasMany(Tarjeta, {
-  foreignKey: "listaId",
-  as: "tarjetas",
-});
-
-Tarjeta.belongsTo(Lista, {
-  foreignKey: "listaId",
-  as: "lista",
-});
-
-module.exports = {
-  Usuario,
-  Tablero,
-  Lista,
-  Tarjeta,
-};
+module.exports = { User, Board, List, Card };

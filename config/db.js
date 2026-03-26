@@ -6,13 +6,4 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
   logging: false,
 });
 
-async function conectarDB() {
-  try {
-    await sequelize.authenticate();
-    console.log("✅ Conexión exitosa a PostgreSQL");
-  } catch (error) {
-    console.error("❌ Error al conectar a PostgreSQL:", error.message);
-  }
-}
-
-module.exports = { sequelize, conectarDB };
+module.exports = { sequelize };
